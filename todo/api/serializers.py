@@ -1,7 +1,11 @@
+from logging import getLogger
+
 from django.db import transaction
 from rest_framework import serializers
 
 from todo.models import Task
+
+logger = getLogger(__name__)
 
 
 class SubTaskSerializer(serializers.Serializer):
@@ -42,6 +46,10 @@ class TaskSerializer(serializers.Serializer):
             )
 
     def create(self, validated_data):
+        version = self.context.get("request").version
+        if version > "3.0.0":
+            logger.error("not supported version, take a decision you need")
+
         sub_tasks = validated_data.pop("sub_tasks", None)
 
         with transaction.atomic():
