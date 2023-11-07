@@ -8,6 +8,8 @@ class TaskViewSet(ListModelMixin, CreateModelMixin, UpdateModelMixin, DestroyMod
     serializer_class = TaskSerializer
 
     def get_queryset(self):
+        print(self.request.version)
+
         if self.action == "list":
             return Task.objects.filter(parent__isnull=True)
         return Task.objects.all()

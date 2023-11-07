@@ -117,3 +117,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Django Rest Framework Settings
+# https://www.django-rest-framework.org/api-guide/settings/
+REST_FRAMEWORK = {
+    "DEFAULT_VERSIONING_CLASS": "utility.versioning.APIHeaderVersioning",
+    "DEFAULT_VERSION": "1.0.0",
+}
